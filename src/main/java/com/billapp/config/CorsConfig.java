@@ -1,6 +1,5 @@
 package com.billapp.config;
 
-
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -12,11 +11,12 @@ public class CorsConfig implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedOrigins(
                     "http://localhost:8080",
-                    "https://3nk1g0nq-8080.inc1.devtunnels.ms"
+                    "http://localhost:8082",      // React dev server?
+                    "http://192.168.1.5:8080",   // Your LAN IP
+                    "http://127.0.0.1:8082"
                 )
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(false);
     }
 }
-
