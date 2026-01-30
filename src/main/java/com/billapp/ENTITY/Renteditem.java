@@ -1,7 +1,13 @@
 package com.billapp.ENTITY;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -10,6 +16,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Renteditem {
@@ -28,6 +35,35 @@ public class Renteditem {
 	@JsonBackReference
 	private Customer customer;
 	
+	@OneToMany(mappedBy = "renteditem" , cascade = CascadeType.ALL,orphanRemoval = true)
+	@JsonManagedReference
+	  private List<ReturnEntries> returnEntries = new ArrayList<>();
+	
+	
+	private LocalDate renteddate;
+	
+	public List<ReturnEntries> getReturnEntries() {
+		return returnEntries;
+	}
+
+	public void setReturnEntries(List<ReturnEntries> returnEntries) {
+		this.returnEntries = returnEntries;
+	}
+	
+	public void addreturnentry(ReturnEntries returnentry) {
+		returnEntries.add(returnentry);
+		returnentry.setRenteditem(this);
+	}
+
+
+	public LocalDate getRenteddate() {
+		return renteddate;
+	}
+
+	public void setRenteddate(LocalDate renteddate) {
+		this.renteddate = renteddate;
+	}
+
 	public RentItemPrice getRentitemprice() {
 		return rentitemprice;
 	}
@@ -74,10 +110,11 @@ public class Renteditem {
 		this.renteditemid = renteditemid;
 	}
 
-	public Renteditem(String item_name, String numberofrenteditem) {
+	public Renteditem(String item_name, String numberofrenteditem,LocalDate renteddate) {
 		super();
 		this.item_name = item_name;
 		this.numberofrenteditem = numberofrenteditem;
+		this.renteddate = renteddate;
 	}
 
 	public Renteditem() {

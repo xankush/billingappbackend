@@ -1,5 +1,6 @@
 package com.billapp.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,5 +15,7 @@ public interface CustomerServices {
 	 public List<RentItemPrice> showallitemprice();
 	 public void additeminitemlist(RentItemPrice r);
 	 public Customer showcustomerrenteditem(int id);
-	 void addnewrentitemtouser(int id, String renteditemname, String numberofrenteditem);
+	public void addnewrentitemtouser(int id, String renteditemname, String numberofrenteditem);
+	public void addReturnEntery(Integer renteditem_id, Integer numberofreturnitem,String return_date);
+	 public Optional<Renteditem> getRentedItem(Integer RentedItem_id);
 }

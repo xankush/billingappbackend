@@ -1,15 +1,19 @@
 package com.billapp;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.billapp.services.implementation.Customerservicesimp;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.billapp.Dao.CustomerListrepository;
-
 @SpringBootApplication
 public class BillappApplication implements CommandLineRunner {
-	@Autowired
-	private CustomerListrepository customerrepo;
+
+    private final Customerservicesimp customerservicesimp;
+
+
+    BillappApplication(Customerservicesimp customerservicesimp) {
+        this.customerservicesimp = customerservicesimp;
+    }
+	
 	
 	public static void main(String[] args) {
 		SpringApplication.run(BillappApplication.class, args);

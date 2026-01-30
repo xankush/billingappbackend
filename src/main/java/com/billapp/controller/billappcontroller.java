@@ -55,5 +55,9 @@ public class billappcontroller {
 		customerservice.addnewrentitemtouser(id,renteditemname,numberofrentitem);
 	}
 	
+	@PostMapping("/customer/{id}/return-entry")
+	public void addreturnentries(@RequestParam int renteditem_id ,@RequestParam int numberofitemreturn,@RequestParam String returndata) {
+		customerservice.addReturnEntery(renteditem_id, numberofitemreturn, returndata);
+	}
 	
 }

@@ -10,7 +10,6 @@ public class CorsConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOrigins(
-                    "https://digitaltentsuppliesrentmanagementapp.netlify.app",
                     "http://localhost:8080",
                     "http://localhost:8082",      // React dev server?
                     "http://192.168.1.5:8080",   // Your LAN IP
